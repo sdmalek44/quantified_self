@@ -36,6 +36,7 @@ group :development, :test do
   gem 'capybara'
   gem 'rspec-rails'
   gem 'simplecov'
+  gem 'launchy'
 end
 
 group :development do

@@ -13,6 +13,11 @@ class Api::V1::FoodsController < ApplicationController
     render json: fc.food, status: fc.status
   end
 
+  def update
+    fe = FoodEditor.new(params[:id], food_params)
+    render json: fe.food, status: fe.status
+  end
+
   private
 
   def food_params

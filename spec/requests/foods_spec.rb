@@ -56,4 +56,18 @@ describe '/api/v1' do
       expect(response.status).to eq(400)
     end
   end
+  context 'patch /api/v1/foods/:id' do
+    it 'can change the food info' do
+      food = Food.create!(name: 'cheese', calories: 1000)
+      payload = { "food": { "name": "cheerios", "calories": "123"} }
+
+      patch "/api/v1/foods/#{food.id}", params: payload
+
+      food_info = JSON.parse(response.body, symbolize_names: true)
+
+      expect(food_info[:id]).to eq(food.id)
+      expect(food_info[:name]).to eq("cheerios")
+      expect(food_info[:calories]).to eq(123)
+    end
+  end
 end

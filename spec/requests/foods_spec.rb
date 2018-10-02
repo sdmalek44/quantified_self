@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe '/api/v1' do
-  context 'user visits /api/vi/foods' do
+  context 'get /api/vi/foods' do
     it 'can see all foods' do
       food = Food.create!(name: 'cheese', calories: 1000)
 
@@ -16,7 +16,7 @@ describe '/api/v1' do
       expect(food_info[:calories]).to eq(food.calories)
     end
   end
-  context 'user visits /api/v1/foods/:id' do
+  context 'get /api/v1/foods/:id' do
     it 'can see one food' do
       food = Food.create!(name: 'cheese', calories: 1000)
 
@@ -32,6 +32,28 @@ describe '/api/v1' do
       get "/api/v1/foods/1"
 
       expect(response.status).to eq(404)
+    end
+  end
+  context 'post /api/v1/foods/:id' do
+    it 'can see created food' do
+      payload = { "food": { "name": "cheerios", "calories": "123"} }
+
+      post "/api/v1/foods", params: payload
+
+      expect(response.status).to eq(201)
+      expect(response).to be_successful
+
+      food_info = JSON.parse(response.body, symbolize_names: true)
+
+      expect(food_info[:id]).to eq(1)
+      expect(food_info[:name]).to eq("cheerios")
+      expect(food_info[:calories]).to eq(123)
+    end
+    it 'status 400 if it didnt create food' do
+      payload = { "food": { "calories": "123"} }
+      post "/api/v1/foods", params: payload
+
+      expect(response.status).to eq(400)
     end
   end
 end

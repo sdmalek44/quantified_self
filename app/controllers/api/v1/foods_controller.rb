@@ -18,6 +18,10 @@ class Api::V1::FoodsController < ApplicationController
     render json: fe.food, status: fe.status
   end
 
+  def destroy
+    render status: FoodDeletor.new(params[:id]).status
+  end
+
   private
 
   def food_params

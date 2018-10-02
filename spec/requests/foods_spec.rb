@@ -69,5 +69,27 @@ describe '/api/v1' do
       expect(food_info[:name]).to eq("cheerios")
       expect(food_info[:calories]).to eq(123)
     end
+    it 'status 400 if food not updated' do
+      food = Food.create!(name: 'cheese', calories: 1000)
+      payload = { "food": {"calories": "123"} }
+
+      patch "/api/v1/foods/#{food.id}", params: payload
+
+      expect(response.status).to eq(400)
+    end
+  end
+  context 'delete /api/v1/foods/:id' do
+    it 'can delete a food' do
+      food = Food.create!(name: 'cheese', calories: 1000)
+
+      delete "/api/v1/foods/#{food.id}"
+
+      expect(response.status).to eq(204)
+    end
+    it 'status 404 if food not found' do
+      delete "/api/v1/foods/1"
+
+      expect(response.status).to eq(404)
+    end
   end
 end

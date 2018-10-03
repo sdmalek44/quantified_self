@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       post "/meals/:meal_id/foods/:id", to: "meals#create"
       get "/meals/:meal_id/foods", to: "meals#show"
       delete "/meals/:meal_id/foods/:id", to: "meals#destroy"
+      get "/favorite_foods", to: "favorites#index"
     end
   end
 end

@@ -24,6 +24,23 @@ $ rails s
 ``` 
 Go to `localhost:3000` in browser  
 Endpoints are accessed by adding them to end of `localhost:3000`  
+  
+## Setup Using Docker  
+Must have docker installed locally https://docs.docker.com/v17.12/docker-for-mac/install/  
+```
+$ git clone https://github.com/sdmalek44/quantified_self.git  
+$ cd quantified_self 
+$ git fetch origin
+$ git checkout -b docker origin/docker
+(start docker)
+$ docker-compose up 
+```
+Go to `localhost:3000` in browser  
+Endpoints are accessed by adding them to end of `localhost:3000`  
+```
+(stop docker)
+$ docker-compose down 
+``` 
 
 ## Endpoints  
 ### Food Endpoints:   

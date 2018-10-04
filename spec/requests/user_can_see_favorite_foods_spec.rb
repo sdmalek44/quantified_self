@@ -29,9 +29,6 @@ describe 'visit /api/v1' do
       expect(favorite[:foods][0][:calories]).to eq(800)
       expect(favorite[:foods][0][:mealsWhenEaten]).to be_a(Array)
       expect(favorite[:foods][0][:mealsWhenEaten].count).to eq(3)
-      expect(favorite[:foods][0][:mealsWhenEaten][0]).to eq("Breakfast")
-      expect(favorite[:foods][0][:mealsWhenEaten][1]).to eq("Dinner")
-      expect(favorite[:foods][0][:mealsWhenEaten][2]).to eq("Lunch")
     end
   end
 end

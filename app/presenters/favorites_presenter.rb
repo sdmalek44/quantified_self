@@ -42,7 +42,6 @@ class FavoritesPresenter
             .group("foods.id")
             .having("count(meals.id) > 1")
             .order("times_eaten DESC")
-
     serialize_foods(foods)
   end
 

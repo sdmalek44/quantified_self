@@ -4,7 +4,7 @@ class FavoritesPresenter
     {
       name: food.name,
       calories: food.calories,
-      mealsWhenEaten: food.meals.distinct.pluck(:name)
+      mealsWhenEaten: food.meals.distinct.pluck(:name).sort
     }
   end
 
